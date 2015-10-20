@@ -35,8 +35,8 @@ pandoraSettingsFiles['PerfectPFA'] = 'PandoraSettings/PandoraSettingsPerfectPFA.
 #gearFile = '/usera/xu/ILCSOFT/myGridDownload/ILD_o1_v06_SiW_5x5.gear'
 #gearFile = '/usera/sg568/ilcsoft_v01_17_07/HCalToEMCalibrationTesting/MokkaJobs/GearFiles/ILD_o1_v06_Detector_Model_' + str(mokkaJobNumber) + '.gear'
 #calibConfigFile = 'CalibrationConfigFiles/Stage' + str(recoStageNumber) + 'Config_5x5_30x30.py'
-gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(detModel) + '_OutputSandbox/ILD_o1_v06_GJN' + str(detModel) + '.gear'
-calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(detModel) + '/Reco_Stage_' + str(recoVar) + '/CalibConfig_DetModel' + str(detModel) + '_RecoStage' + str(recoVar) + '.py'
+gearFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/GridSandboxes/GJN' + str(mokkaJobNumber) + '_OutputSandbox/ILD_o1_v06_GJN' + str(mokkaJobNumber) + '.gear'
+calibConfigFile = '/r04/lc/sg568/HCAL_Optimisation_Studies/CalibrationResults/Detector_Model_' + str(mokkaJobNumber) + '/Reco_Stage_' + str(recoStageNumber) + '/CalibConfig_DetModel' + str(mokkaJobNumber) + '_RecoStage' + str(recoStageNumber) + '.py'
 
 #=====
 
