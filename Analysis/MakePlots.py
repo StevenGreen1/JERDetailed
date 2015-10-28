@@ -6,7 +6,6 @@ import re
 import math
 
 thisFile = sys.argv[0]
-inputFileName = sys.argv[1]
 
 from collections import defaultdict
 JER = defaultdict(dict)
@@ -15,7 +14,9 @@ JERError = defaultdict(dict)
 pandoraSettings = ''
 pandoraSettingsList = ['Default','PerfectPhoton','PerfectPhotonNK0L','PerfectPFA','Muon']
 jetEnergyList = [30, 40, 50, 60, 70, 80, 91, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 220, 240, 260, 280, 300, 350, 400, 450, 500]
-detectorModel = 0
+detectorModel = sys.argv[1]
+recoVar = sys.argv[2]
+inputFileName = 'Detector_Model_' + str(detectorModel) + '_Reco_Var_' + str(recoVar) + '_Results.txt'
 
 #===== Read data =====#
 
@@ -123,11 +124,15 @@ for pandoraSettings in ['Default','PerfectPFA','TotalConfusion','PhotonConfusion
 saveString += 'pLegend->SetFillStyle(0);\n'
 saveString += 'pLegend->Draw("same");\n'
 
-saveString += 'pCanvasEj->SaveAs("JER_vs_Ej.pdf");\n'
+saveString += 'pCanvasEj->SaveAs("JER_vs_Ej_Detector_Model_' + str(detectorModel) + '_Reco_Var_' + str(recoVar) + '.pdf");\n'
 saveString += '}\n'
 
 #===== Write out file =====#
-resultsFile = open("JER_vs_Ej.C", "w")
+resultsFile = open('JER_vs_Ej_Detector_Model_' + str(detectorModel) + '_Reco_Var_' + str(recoVar) + '.C', 'w')
 resultsFile.write(saveString)
 resultsFile.close()
+
+detectorModel = 38
+recoVar = 69
+
 
