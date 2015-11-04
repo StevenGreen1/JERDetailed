@@ -51,7 +51,7 @@ def getMarlinSteeringFileTemplate(baseFileName,calibrationFileName):
     marlinSteeringTemplate = re.sub('CALIBR_ECAL_XXXX',ECalString,marlinSteeringTemplate)
     marlinSteeringTemplate = re.sub('CALIBR_HCAL_BARREL_XXXX',str(config['CalibrHCalBarrel']),marlinSteeringTemplate)
     marlinSteeringTemplate = re.sub('CALIBR_HCAL_ENDCAP_XXXX',str(config['CalibrHCalEndcap']),marlinSteeringTemplate)
-    marlinSteeringTemplate = re.sub('CALIBR_HCAL_OTHER_XXXX',str(config['CalibrHCALOther']),marlinSteeringTemplate)
+    marlinSteeringTemplate = re.sub('CALIBR_HCAL_OTHER_XXXX',str(config['CalibrHCalOther']),marlinSteeringTemplate)
     marlinSteeringTemplate = re.sub('CALIBR_MUON_XXXX',str(config['CalibrMuon']),marlinSteeringTemplate)
 
     # Timing Cuts in HCal

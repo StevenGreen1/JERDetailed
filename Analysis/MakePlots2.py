@@ -20,7 +20,7 @@ recoVarList = range(69,77)
 
 #===== What To Plot =====#
 
-NameOfPlot = 'LCWS_Plot'
+NameOfPlot = 'All_Plots'
 
 ToPlot = [
              ['Default', 38, 69],
@@ -30,7 +30,7 @@ ToPlot = [
              ['Default', 38, 73],
 #             ['Default', 38, 74],
 #             ['Default', 38, 75],
-             ['Default', 38, 76]
+             ['Default', 38, 76],
 #             ['PerfectPFA', 38, 69],
 #             ['PerfectPFA', 38, 70],
 #             ['PerfectPFA', 38, 71],
@@ -124,10 +124,9 @@ for recoVar in recoVarList:
 
 #==== Tools ====#
 
-def rootLineColor(pandora):
+def rootLineColor(recoVar):
     colourDict = defaultdict(dict)
-    colourDict = {'Default':'kBlack', 'PerfectPFA':'kBlue', 'TotalConfusion':'kRed', 'PhotonConfusion':'kOrange', 'NeutralHadronConfusion':'8', 'OtherConfusion':'kMagenta'}
-    # Neutral had is green 
+    colourDict = {69:22, 70:21, 71:20, 72:23, 73:26, 74:28, 75:25, 76:24}
     return colourDict[(pandora)]
 
 #rootLineStyle = ['1','2','3','4','5','6']
@@ -192,8 +191,8 @@ for item in ToPlot:
     saveString += '};\n'
 
     saveString += 'TGraphErrors *pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + ' = new TGraphErrors(' + str(len(jetEnergyList)) + ',jetEnergy,' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '_JER,jetEnergyError,' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '_JERError);\n'
-    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetLineColor(' + rootLineColor(pandoraToPlot) + ');\n'
-    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetMarkerColor(' + rootLineColor(pandoraToPlot) + ');\n'
+    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetLineColor(' + rootLineColor(recoVarToPlot) + ');\n'
+    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetMarkerColor(' + rootLineColor(recoVarToPlot) + ');\n'
     saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetMarkerStyle(' + str(rootMarkerStyle(recoVarToPlot)) + ');\n'
     saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->Draw("lp,same");\n'
     legendDescription = pandoraToPlot + ', Hadronic Energy Truncation ' + str(truncationFromRecoVar(recoVarToPlot)) + ' GeV'

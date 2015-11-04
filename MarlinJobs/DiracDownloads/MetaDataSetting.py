@@ -1,4 +1,5 @@
 import os
+import sys
 
 from DIRAC.Core.Base import Script
 Script.parseCommandLine()
@@ -6,12 +7,11 @@ from DIRAC.Resources.Catalog.FileCatalogClient import FileCatalogClient
 
 evtType = 'Z_uds'
 jobDescription = 'JERDetailed'
-detNumber = 38
-recoStage = 43
+detNumber = sys.argv[1]
+recoStage = sys.argv[2]
 fileType = 'Rec'
 
-#energies = [91,100,110,120,130,140,150,160,170,180,190,200,220,240,260,280,300,350,400,450,500]
-energies = [30,40,50,60,70,80]
+energies = [30,40,50,60,70,80,91,100,110,120,130,140,150,160,170,180,190,200,220,240,260,280,300,350,400,450,500]
 
 fc = FileCatalogClient()
 for energy in energies:
