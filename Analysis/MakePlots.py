@@ -23,14 +23,14 @@ recoVarList = range(69,77)
 NameOfPlot = 'LCWS_Plot'
 
 ToPlot = [
-             ['Default', 38, 69],
+             ['Default', 38, 69, 2, 1],
 #             ['Default', 38, 70],
-             ['Default', 38, 71],
+             ['Default', 38, 71, 10003, 1],
 #             ['Default', 38, 72],
-             ['Default', 38, 73],
+             ['Default', 38, 73, 10004, 1],
 #             ['Default', 38, 74],
 #             ['Default', 38, 75],
-             ['Default', 38, 76]
+             ['Default', 38, 76, 1, 1]
 #             ['PerfectPFA', 38, 69],
 #             ['PerfectPFA', 38, 70],
 #             ['PerfectPFA', 38, 71],
@@ -149,7 +149,7 @@ saveString += 'gStyle->SetOptStat(0);\n'
 saveString += 'TCanvas *pCanvasEj = new TCanvas();\n'
 saveString += 'pCanvasEj->cd();\n'
 
-saveString += 'TH2F *pAxesEj = new TH2F("axesEj","",1200,0,300,12000,0,6.5);\n'
+saveString += 'TH2F *pAxesEj = new TH2F("axesEj","",1200,0,300,12000,2,5);\n'
 saveString += 'pAxesEj->GetYaxis()->SetTitle("RMS_{90}(E_{j}) / Mean_{90}(E_{j}) [%]");\n'
 saveString += 'pAxesEj->GetXaxis()->SetTitle("E_{j} [GeV]");\n'
 saveString += 'pAxesEj->Draw();\n'
@@ -176,6 +176,8 @@ for item in ToPlot:
     pandoraToPlot = item[0]
     detectorModelToPlot = item[1]
     recoVarToPlot = item[2]
+    colour = item[3]
+    style = item[4]
 
     saveString += 'float ' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '_JER[' + str(len(jetEnergyList)) + '] = {'
     for energy in jetEnergyList:
@@ -192,12 +194,12 @@ for item in ToPlot:
     saveString += '};\n'
 
     saveString += 'TGraphErrors *pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + ' = new TGraphErrors(' + str(len(jetEnergyList)) + ',jetEnergy,' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '_JER,jetEnergyError,' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '_JERError);\n'
-    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetLineColor(' + rootLineColor(pandoraToPlot) + ');\n'
-    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetMarkerColor(' + rootLineColor(pandoraToPlot) + ');\n'
-    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetMarkerStyle(' + str(rootMarkerStyle(recoVarToPlot)) + ');\n'
+    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetLineColor(' + str(colour) + ');\n'
+    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetMarkerColor(' + str(colour) + ');\n'
+    saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->SetMarkerStyle(' + str(style) + ');\n'
     saveString += 'pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + '->Draw("lp,same");\n'
-    legendDescription = pandoraToPlot + ', Hadronic Energy Truncation ' + str(truncationFromRecoVar(recoVarToPlot)) + ' GeV'
-    saveString += 'pLegend->AddEntry(pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + ', "' + legendDescription + '", "lp");\n'
+    legendDescription = '#splitline{Timing Cut in ECal and HCal 100 ns,}{Hadronic Energy Truncation ' + str(truncationFromRecoVar(recoVarToPlot)) + ' GeV}'
+    saveString += 'pLegend->AddEntry(pTGraphErrors_' + pandoraToPlot + '_' + str(detectorModelToPlot) + '_' + str(recoVarToPlot) + ', "' + legendDescription + '", "l");\n'
 
 saveString += 'pLegend->SetFillStyle(0);\n'
 saveString += 'pLegend->Draw("same");\n'

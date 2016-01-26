@@ -14,11 +14,10 @@ from MokkaGridJobs import *
 
 detectorModelNumber = 38 # Default detector model
 
-#eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['91','100','110','120','130','140','150','160','170','180','190','200','220','240','260','280','300','350','400','450','500'] } ]
-eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['30','40','50','60','70','80'] } ]
+eventsToSimulate = [ { 'EventType': "Z_uds"  , 'EventsPerFile' : 1000 , 'Energies':  ['550', '600', '650', '700', '750', '800', '850', '900', '950', '1000', '1100', '1150', '1200', '1250', '1300', '1350', '1400', '1450', '1500', '1550', '1600', '1650', '1700', '1750', '1800', '1850', '1900', '1950', '2000', '2100', '2200', '2300', '2400', '2500', '2600', '2700', '2800', '2900', '3000'] } ]
 
 baseXmlFile  = 'TemplateRepository/MokkaSteer.steer'
-eventsPerJob = 1000
+eventsPerJob = 100
 
 jobName = 'JERDetailed'
 
